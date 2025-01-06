@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Custom Dark Mode Enhancements */
+.dark .control-panel {
+    background-color: #1a1a2e; /* Darker background for control panel */
+    color: #e6e6e6; /* Slightly dimmed text for readability */
+}
+
+.dark .control-panel .slider {
+    background-color: #333344; /* Darker slider background */
+}
+
+
+.absolute {
+    position: absolute;
+}
+
+.bg-gray-800 {
+    background-color: #2d3748;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.p-2 {
+    padding: 0.5rem;
+}
+
+.rounded {
+    border-radius: 0.25rem;
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.z-50 {
+    z-index: 50;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: #2d3748;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    z-index: 50;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Sidebar transition */
+.sidebar-transition {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Blur effect for 3D scene when the sidebar is open */
+.blur-sm {
+    filter: blur(4px);
+    transition: filter 0.3s ease-in-out;
+}

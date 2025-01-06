@@ -1,0 +1,72 @@
+{
+  "header": {
+    "title": "My Solar System App",
+    "language": "Language",
+    "darkMode": "Enable Dark Mode",
+    "lightMode": "Enable Light Mode"
+  },
+  "sidebar": {
+    "title": "Control Panel"
+  },
+  "sunConfig": {
+    "title": "Sun Configuration",
+    "polarSpeedFactor": "Polar Speed Factor",
+    "granulation": "Granulation",
+    "surfaceIntensity": "Surface Intensity",
+    "plasmaFlowSpeed": "Plasma Flow Speed",
+    "coronaGlowStrength": "Corona Glow Strength",
+    "flareIntensity": "Flare Intensity",
+    "visualEffects": "Visual Effects",
+    "help": "Help",
+    "reset": "Reset to Default Settings",
+    "helpTitle": "Sun Configuration Help",
+    "tooltips": {
+      "granulation": "Granules are convection cells in the Sun’s surface.",
+      "corona": "The corona is the outermost part of the Sun’s atmosphere."
+    }
+  },
+  "haloConfig": {
+    "title": "Halo Configuration",
+    "visualEffects": "Visual Effects",
+    "radius": "Radius",
+    "cameraDistance": "Camera Distance",
+    "colorR": "Red",
+    "colorG": "Green",
+    "colorB": "Blue",
+    "haloBrightness": "Halo Brightness",
+    "edgeTransparencyFactor": "Edge Transparency Factor",
+    "globalAlpha": "Global Alpha",
+    "reset": "Reset Halo",
+    "help": "Help"
+  },
+  "help": {
+    "sunConfig": {
+      "description": "These settings allow you to modify the Sun's visual and dynamic properties.",
+      "controls": {
+        "polarSpeedFactor": "Adjusts the Sun's rotational speed at the poles.",
+        "granulation": "Controls the intensity of the Sun's granulation effect.",
+        "surfaceIntensity": "Sets the brightness of the Sun's surface.",
+        "plasmaFlowSpeed": "Changes the speed of plasma flows on the Sun.",
+        "coronaGlowStrength": "Modifies the glow intensity of the Sun's corona.",
+        "flareIntensity": "Controls the brightness of solar flares."
+      }
+    },
+    "haloConfig": {
+      "title": "Halo Configuration Help",
+      "description": "The Halo settings allow you to control the appearance of the glowing halo around the Sun. You can adjust the radius, color, and intensity of the halo to achieve the desired effect.",
+      "controls": {
+        "radius": "Controls the size of the halo.",
+        "cameraDistance": "Adjusts the scaling effect of the halo based on camera distance.",
+        "color": "Use the RGB sliders to set the halo's color.",
+        "intensity": "Controls the brightness of the halo.",
+        "innerGlow": "Adjusts the inner glow effect of the halo.",
+        "outerGlow": "Adjusts the outer glow effect of the halo.",
+        "pulsation": "Controls the pulsating effect of the halo over time.",
+        "fadeEffect": "Manages the gradual fade-out effect at the edges of the halo."
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 My Solar System"
+  }
+}
