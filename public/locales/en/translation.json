@@ -8,6 +8,7 @@
   "sidebar": {
     "title": "Control Panel"
   },
+  "toggleVisibility": "Toggle Visibility",
   "sunConfig": {
     "title": "Sun Configuration",
     "polarSpeedFactor": "Polar Speed Factor",
@@ -39,6 +40,25 @@
     "reset": "Reset Halo",
     "help": "Help"
   },
+  "prominenceConfig": {
+    "title": "Prominence Configuration",
+    "visualEffects": "Visual Effects",
+    "intensity": "Prominence Intensity",
+    "turbulence": "Prominence Turbulence",
+    "colorR": "Red",
+    "colorG": "Green",
+    "colorB": "Blue",
+    "scale": "Scale",
+    "spread": "Spread",
+    "falloff": "Falloff",
+    "distortionScale": "Distortion Scale",
+    "turbulenceStrength": "Turbulence Strength",
+    "reset": "Reset Prominence",
+    "help": "Help",
+    "toggleVisibility": "Prominence Visibility",
+    "visible": "Visible",
+    "hidden": "Hidden"
+  },
   "help": {
     "sunConfig": {
       "description": "These settings allow you to modify the Sun's visual and dynamic properties.",
@@ -63,6 +83,20 @@
         "outerGlow": "Adjusts the outer glow effect of the halo.",
         "pulsation": "Controls the pulsating effect of the halo over time.",
         "fadeEffect": "Manages the gradual fade-out effect at the edges of the halo."
+      }
+    },
+    "prominenceConfig": {
+      "title": "Prominence Configuration",
+      "description": "Adjust the visual and physical properties of the solar prominences.",
+      "controls": {
+        "size": "Defines the overall size or height of the prominence arcs.",
+        "intensity": "Controls the brightness of the prominence glow.",
+        "color": "Defines the RGB color of the prominences.",
+        "arcSegments": "Specifies the number of segments for smooth prominence curves.",
+        "noiseFactor": "Adjusts the randomness in the prominence shapes.",
+        "turbulence": "Adds a dynamic turbulence effect to the prominences.",
+        "flicker": "Emulates a natural flickering effect for prominence dynamics.",
+        "fadeEffect": "Controls the transparency fade at the edges of the prominences."
       }
     }
   },

@@ -3,9 +3,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import useHelpModal from '@hooks/useHelpModal.ts';
+import { createProminenceControlItems, ProminenceState } from '@ui/configs/ProminenceControls.tsx';
 import { SunState } from '@ui/configs/SunControls';
 import HaloConfigurationSection from '@ui/HaloConfigurationSection.tsx';
 import HelpModal from '@ui/modals/HelpModal';
+import ProminenceConfigurationSection from '@ui/ProminenceConfigurationSection.tsx';
 import SunConfigurationSection from '@ui/SunConfigurationSection.tsx';
 
 import { FaTimes } from 'react-icons/fa';
@@ -23,6 +25,10 @@ type SidebarProps = {
   haloConfiguration: HaloState;
   setHaloConfiguration: (updated: Partial<HaloState>) => void;
   resetHaloToDefault: () => void;
+  prominenceConfiguration: ProminenceState;
+  setProminenceConfiguration: (updated: Partial<ProminenceState>) => void;
+  resetProminenceToDefault: () => void;
+  toggleProminenceVisibility: () => void;
 };
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -34,6 +40,10 @@ const Sidebar: React.FC<SidebarProps> = ({
   haloConfiguration,
   setHaloConfiguration,
   resetHaloToDefault,
+  prominenceConfiguration, // Add Prominence configuration
+  setProminenceConfiguration, // Add setter for Prominence
+  resetProminenceToDefault, // Add reset function for Prominence
+  toggleProminenceVisibility,
 }) => {
   const { t } = useTranslation();
   const { isHelpOpen, helpContent, openHelpModal, closeHelpModal } = useHelpModal();
@@ -42,6 +52,11 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   const haloItems = createHaloControlItems(haloConfiguration, setHaloConfiguration, t);
 
+  const prominenceItems = createProminenceControlItems(
+    prominenceConfiguration,
+    setProminenceConfiguration,
+    t
+  ); // Create Prominence control items
   return (
     <div
       className={`fixed top-0 left-0 h-full bg-gray-800 shadow-lg flex flex-col transform transition-transform z-sidebar ${
@@ -78,6 +93,15 @@ const Sidebar: React.FC<SidebarProps> = ({
           resetHaloToDefault={resetHaloToDefault}
           openHelpModal={openHelpModal}
           t={t}
+        />
+
+        <ProminenceConfigurationSection
+          prominenceItems={prominenceItems} // Pass Prominence control items
+          resetProminenceToDefault={resetProminenceToDefault} // Pass reset function
+          openHelpModal={openHelpModal} // Pass Help modal function
+          toggleProminenceVisibility={toggleProminenceVisibility}
+          isProminenceVisible={prominenceConfiguration.isVisible}
+          t={t} // Pass translation function
         />
       </div>
 

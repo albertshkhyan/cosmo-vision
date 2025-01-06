@@ -3,14 +3,14 @@ import { useState } from 'react';
 import { HaloState } from '@ui/configs/HaloControls.tsx';
 
 const defaultHaloConfiguration: HaloState = {
-  radius: 2.5,
+  radius: 2.2,
   cameraDistance: 1.2,
   colorR: 1.0,
-  colorG: 0.8,
-  colorB: 0.4,
-  haloBrightness: 5, // Default brightness
-  edgeTransparencyFactor: 1.0, // Default edge transparency
-  globalAlpha: 1.0, // Default global alpha
+  colorG: 1.0,
+  colorB: 0.1,
+  haloBrightness: 1.7, // Default brightness
+  edgeTransparencyFactor: 0.0, // Default edge transparency
+  globalAlpha: 0.1, // Default global alpha
 };
 
 const useHaloConfiguration = () => {

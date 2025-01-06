@@ -1,8 +1,10 @@
 import React, { useCallback, useState } from 'react';
 
 import useHaloConfiguration from '@hooks/useHaloConfiguration.ts';
+import useProminenceConfiguration from '@hooks/useProminenceConfiguration.ts';
 import useSunConfigurationState from '@hooks/useSunConfigurationState';
 import SolarSystemScene from '@scenes/SolarSystemScene';
+import { ProminenceState } from '@ui/configs/ProminenceControls.tsx';
 import Sidebar from '@ui/Sidebar';
 
 import { FaBars } from 'react-icons/fa';
@@ -11,6 +13,12 @@ const SceneLayout: React.FC = () => {
   const { sunConfiguration, setSunConfiguration, resetToDefault } = useSunConfigurationState();
   const { haloConfiguration, updateHaloConfiguration, resetHaloConfiguration } =
     useHaloConfiguration();
+  const {
+    prominenceConfiguration,
+    toggleVisibility: toggleProminenceVisibility,
+    setProminenceConfiguration,
+    resetProminenceConfiguration,
+  } = useProminenceConfiguration();
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -28,6 +36,13 @@ const SceneLayout: React.FC = () => {
     [setSunConfiguration]
   );
 
+  const updateProminenceConfiguration = (updated: Partial<ProminenceState>) => {
+    setProminenceConfiguration((prev) => ({
+      ...prev,
+      ...updated,
+    }));
+  };
+
   return (
     <div className="relative flex h-screen">
       {/* Sidebar */}
@@ -41,6 +56,10 @@ const SceneLayout: React.FC = () => {
         haloConfiguration={haloConfiguration}
         setHaloConfiguration={updateHaloConfiguration}
         resetHaloToDefault={resetHaloConfiguration}
+        prominenceConfiguration={prominenceConfiguration}
+        setProminenceConfiguration={updateProminenceConfiguration}
+        resetProminenceToDefault={resetProminenceConfiguration}
+        toggleProminenceVisibility={toggleProminenceVisibility}
       />
 
       {/* Main Content Area */}
@@ -54,7 +73,11 @@ const SceneLayout: React.FC = () => {
         </button>
 
         {/* 3D Scene */}
-        <SolarSystemScene haloValues={haloConfiguration} sunValues={sunConfiguration} />
+        <SolarSystemScene
+          prominenceValues={prominenceConfiguration}
+          haloValues={haloConfiguration}
+          sunValues={sunConfiguration}
+        />
       </div>
     </div>
   );

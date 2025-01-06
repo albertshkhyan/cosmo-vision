@@ -3,6 +3,7 @@ import React from 'react';
 import Canvas3D from '@components/core-3d/Canvas3D';
 import Sun from '@threeD/Sun';
 import { HaloState } from '@ui/configs/HaloControls.tsx';
+import { ProminenceState } from '@ui/configs/ProminenceControls.tsx';
 import { SunState } from '@ui/configs/SunControls.tsx';
 
 // If you have additional 3D components like Earth, Mars, or Starfield, you can import them here
@@ -13,6 +14,7 @@ import { SunState } from '@ui/configs/SunControls.tsx';
 interface SolarSystemSceneProps {
   sunValues: SunState;
   haloValues: HaloState; // Include halo configuration in props
+  prominenceValues: ProminenceState; // Include prominence configuration in props
   // showOrbits?: boolean;
   // showStarfield?: boolean;
   focusPlanet?: string; // Optional prop for focusing on a specific planet
@@ -21,6 +23,7 @@ interface SolarSystemSceneProps {
 const SolarSystemScene: React.FC<SolarSystemSceneProps> = ({
   sunValues,
   haloValues,
+  prominenceValues,
   // showOrbits = true,
   // showStarfield = true,
   focusPlanet,
@@ -43,7 +46,7 @@ const SolarSystemScene: React.FC<SolarSystemSceneProps> = ({
     <div className="absolute top-0 left-0 w-full h-full">
       <Canvas3D initialCameraPosition={adjustCamera(focusPlanet || 'Sun')} showControls={true}>
         {/* The Sun */}
-        <Sun haloValues={haloValues} sunValues={sunValues} />
+        <Sun haloValues={haloValues} sunValues={sunValues} prominenceValues={prominenceValues} />
 
         {/* Planets */}
         {/* Uncomment and add planets as needed */}
