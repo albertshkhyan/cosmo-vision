@@ -59,6 +59,15 @@
     "visible": "Visible",
     "hidden": "Hidden"
   },
+  "starFieldConfig": {
+    "title": "Star field Settings",
+    "toggleVisibility": "Toggle Star field Visibility",
+    "starDensity": "Star Density",
+    "motionSpeed": "Motion Speed",
+    "starColorR": "Star Color (Red)",
+    "starColorG": "Star Color (Green)",
+    "starColorB": "Star Color (Blue)"
+  },
   "help": {
     "sunConfig": {
       "description": "These settings allow you to modify the Sun's visual and dynamic properties.",

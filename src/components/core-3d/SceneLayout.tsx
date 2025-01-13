@@ -2,9 +2,11 @@ import React, { useCallback, useState } from 'react';
 
 import useHaloConfiguration from '@hooks/useHaloConfiguration.ts';
 import useProminenceConfiguration from '@hooks/useProminenceConfiguration.ts';
+import useStarFieldConfiguration from '@hooks/useStarfieldConfiguration.ts';
 import useSunConfigurationState from '@hooks/useSunConfigurationState';
 import SolarSystemScene from '@scenes/SolarSystemScene';
 import { ProminenceState } from '@ui/configs/ProminenceControls.tsx';
+import { StarFieldState } from '@ui/configs/StarfieldControlPanel.tsx';
 import Sidebar from '@ui/Sidebar';
 
 import { FaBars } from 'react-icons/fa';
@@ -19,6 +21,13 @@ const SceneLayout: React.FC = () => {
     setProminenceConfiguration,
     resetProminenceConfiguration,
   } = useProminenceConfiguration();
+
+  const {
+    starFieldConfiguration,
+    toggleVisibility: toggleStarFieldVisibility,
+    setStarFieldConfiguration,
+    resetStarFieldConfiguration,
+  } = useStarFieldConfiguration(); // StarField hook integration
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -43,6 +52,13 @@ const SceneLayout: React.FC = () => {
     }));
   };
 
+  const updateStarFieldConfiguration = (updated: Partial<StarFieldState>) => {
+    setStarFieldConfiguration((prev) => ({
+      ...prev,
+      ...updated,
+    }));
+  };
+
   return (
     <div className="relative flex h-screen">
       {/* Sidebar */}
@@ -60,6 +76,10 @@ const SceneLayout: React.FC = () => {
         setProminenceConfiguration={updateProminenceConfiguration}
         resetProminenceToDefault={resetProminenceConfiguration}
         toggleProminenceVisibility={toggleProminenceVisibility}
+        starFieldConfiguration={starFieldConfiguration} // Pass StarField config
+        setStarFieldConfiguration={updateStarFieldConfiguration} // Pass StarField setter
+        resetStarFieldToDefault={resetStarFieldConfiguration} // Pass reset logic
+        toggleStarFieldVisibility={toggleStarFieldVisibility} // Pass visibility toggle
       />
 
       {/* Main Content Area */}
@@ -77,6 +97,7 @@ const SceneLayout: React.FC = () => {
           prominenceValues={prominenceConfiguration}
           haloValues={haloConfiguration}
           sunValues={sunConfiguration}
+          starFieldValues={starFieldConfiguration} // Pass StarField configuration
         />
       </div>
     </div>

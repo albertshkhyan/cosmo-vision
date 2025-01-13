@@ -4,10 +4,12 @@ import { useTranslation } from 'react-i18next';
 
 import useHelpModal from '@hooks/useHelpModal.ts';
 import { createProminenceControlItems, ProminenceState } from '@ui/configs/ProminenceControls.tsx';
+import { createStarFieldControlItems, StarFieldState } from '@ui/configs/StarfieldControlPanel.tsx';
 import { SunState } from '@ui/configs/SunControls';
 import HaloConfigurationSection from '@ui/HaloConfigurationSection.tsx';
 import HelpModal from '@ui/modals/HelpModal';
 import ProminenceConfigurationSection from '@ui/ProminenceConfigurationSection.tsx';
+import StarFieldConfigurationSection from '@ui/StarFieldConfigurationSection.tsx';
 import SunConfigurationSection from '@ui/SunConfigurationSection.tsx';
 
 import { FaTimes } from 'react-icons/fa';
@@ -29,6 +31,10 @@ type SidebarProps = {
   setProminenceConfiguration: (updated: Partial<ProminenceState>) => void;
   resetProminenceToDefault: () => void;
   toggleProminenceVisibility: () => void;
+  starFieldConfiguration: StarFieldState; // Add StarField configuration
+  setStarFieldConfiguration: (updated: Partial<StarFieldState>) => void; // Add setter for StarField
+  resetStarFieldToDefault: () => void; // Add reset function for StarField
+  toggleStarFieldVisibility: () => void; // Add toggle visibility for StarField
 };
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -44,6 +50,10 @@ const Sidebar: React.FC<SidebarProps> = ({
   setProminenceConfiguration, // Add setter for Prominence
   resetProminenceToDefault, // Add reset function for Prominence
   toggleProminenceVisibility,
+  starFieldConfiguration, // Add StarField configuration
+  setStarFieldConfiguration, // Add setter for StarField
+  resetStarFieldToDefault, // Add reset function for StarField
+  toggleStarFieldVisibility, // Add toggle visibility for StarField
 }) => {
   const { t } = useTranslation();
   const { isHelpOpen, helpContent, openHelpModal, closeHelpModal } = useHelpModal();
@@ -57,6 +67,14 @@ const Sidebar: React.FC<SidebarProps> = ({
     setProminenceConfiguration,
     t
   ); // Create Prominence control items
+
+  const starFieldItems = createStarFieldControlItems(
+    // Generate StarField control items
+    starFieldConfiguration,
+    setStarFieldConfiguration,
+    t
+  );
+
   return (
     <div
       className={`fixed top-0 left-0 h-full bg-gray-800 shadow-lg flex flex-col transform transition-transform z-sidebar ${
@@ -101,6 +119,15 @@ const Sidebar: React.FC<SidebarProps> = ({
           openHelpModal={openHelpModal} // Pass Help modal function
           toggleProminenceVisibility={toggleProminenceVisibility}
           isProminenceVisible={prominenceConfiguration.isVisible}
+          t={t} // Pass translation function
+        />
+
+        <StarFieldConfigurationSection
+          starFieldItems={starFieldItems} // Pass StarField control items
+          resetStarFieldToDefault={resetStarFieldToDefault} // Pass reset function
+          openHelpModal={openHelpModal} // Pass Help modal function
+          toggleStarFieldVisibility={toggleStarFieldVisibility} // Pass visibility toggle
+          isStarFieldVisible={starFieldConfiguration.isVisible} // Pass visibility state
           t={t} // Pass translation function
         />
       </div>
