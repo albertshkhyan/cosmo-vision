@@ -17,9 +17,10 @@ interface SunProps {
   haloValues: HaloState; // Props for the halo configuration
   sunValues: SunState; // Props for the sun configuration
   prominenceValues: ProminenceState;
+  position: [number, number, number];
 }
 
-const Sun: React.FC<SunProps> = ({ haloValues, sunValues, prominenceValues }) => {
+const Sun: React.FC<SunProps> = ({ haloValues, sunValues, prominenceValues, position }) => {
   const {
     polarSpeedFactor,
     granulationIntensity,
@@ -113,7 +114,7 @@ const Sun: React.FC<SunProps> = ({ haloValues, sunValues, prominenceValues }) =>
   );
 
   return (
-    <group>
+    <group position={position}>
       {/* Core Sun */}
       <mesh ref={meshRef}>
         <sphereGeometry args={[sunRadius, 64, 64]} />

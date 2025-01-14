@@ -68,6 +68,16 @@
     "starColorG": "Star Color (Green)",
     "starColorB": "Star Color (Blue)"
   },
+  "earthConfig": {
+    "title": "Earth Configuration",
+    "rotationSpeed": "Rotation Speed",
+    "axialTilt": "Axial Tilt",
+    "solarIrradiance": "Solar Irradiance",
+    "atmosphereTransparency": "Atmosphere Transparency",
+    "visualEffects": "Visual Effects",
+    "reset": "Reset Earth to Default Settings",
+    "help": "Help"
+  },
   "help": {
     "sunConfig": {
       "description": "These settings allow you to modify the Sun's visual and dynamic properties.",
@@ -106,6 +116,16 @@
         "turbulence": "Adds a dynamic turbulence effect to the prominences.",
         "flicker": "Emulates a natural flickering effect for prominence dynamics.",
         "fadeEffect": "Controls the transparency fade at the edges of the prominences."
+      }
+    },
+    "earthConfig": {
+      "title": "Earth Configuration Help",
+      "description": "These settings allow you to modify Earth's visual and dynamic properties.",
+      "controls": {
+        "rotationSpeed": "Adjusts the speed of Earth's rotation around its axis.",
+        "axialTilt": "Defines the tilt of Earth's axis relative to its orbit around the Sun.",
+        "solarIrradiance": "Controls the intensity of sunlight on Earth's surface.",
+        "atmosphereTransparency": "Adjusts the transparency of Earth's atmosphere."
       }
     }
   },

@@ -1,10 +1,12 @@
 import React, { useCallback, useState } from 'react';
 
+import useEarthConfiguration from '@hooks/useEarthConfiguration.ts';
 import useHaloConfiguration from '@hooks/useHaloConfiguration.ts';
 import useProminenceConfiguration from '@hooks/useProminenceConfiguration.ts';
 import useStarFieldConfiguration from '@hooks/useStarfieldConfiguration.ts';
 import useSunConfigurationState from '@hooks/useSunConfigurationState';
 import SolarSystemScene from '@scenes/SolarSystemScene';
+import { EarthState } from '@ui/configs/EarthControls.tsx';
 import { ProminenceState } from '@ui/configs/ProminenceControls.tsx';
 import { StarFieldState } from '@ui/configs/StarfieldControlPanel.tsx';
 import Sidebar from '@ui/Sidebar';
@@ -28,6 +30,9 @@ const SceneLayout: React.FC = () => {
     setStarFieldConfiguration,
     resetStarFieldConfiguration,
   } = useStarFieldConfiguration(); // StarField hook integration
+
+  const { earthConfiguration, setEarthConfiguration, resetEarthConfiguration } =
+    useEarthConfiguration(); // Earth hook integration
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -59,6 +64,13 @@ const SceneLayout: React.FC = () => {
     }));
   };
 
+  const updateEarthConfiguration = (updated: Partial<EarthState>) => {
+    setEarthConfiguration((prev) => ({
+      ...prev,
+      ...updated,
+    }));
+  };
+
   return (
     <div className="relative flex h-screen">
       {/* Sidebar */}
@@ -80,6 +92,9 @@ const SceneLayout: React.FC = () => {
         setStarFieldConfiguration={updateStarFieldConfiguration} // Pass StarField setter
         resetStarFieldToDefault={resetStarFieldConfiguration} // Pass reset logic
         toggleStarFieldVisibility={toggleStarFieldVisibility} // Pass visibility toggle
+        earthConfiguration={earthConfiguration} // Pass Earth config
+        setEarthConfiguration={updateEarthConfiguration} // Pass Earth setter
+        resetEarthToDefault={resetEarthConfiguration} // Pass Earth reset logic
       />
 
       {/* Main Content Area */}
@@ -94,6 +109,7 @@ const SceneLayout: React.FC = () => {
 
         {/* 3D Scene */}
         <SolarSystemScene
+          earthValues={earthConfiguration}
           prominenceValues={prominenceConfiguration}
           haloValues={haloConfiguration}
           sunValues={sunConfiguration}

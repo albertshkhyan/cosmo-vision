@@ -3,9 +3,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import useHelpModal from '@hooks/useHelpModal.ts';
+import { createEarthControlItems, EarthState } from '@ui/configs/EarthControls.tsx';
 import { createProminenceControlItems, ProminenceState } from '@ui/configs/ProminenceControls.tsx';
 import { createStarFieldControlItems, StarFieldState } from '@ui/configs/StarfieldControlPanel.tsx';
 import { SunState } from '@ui/configs/SunControls';
+import EarthConfigurationSection from '@ui/EarthConfigurationSection.tsx';
 import HaloConfigurationSection from '@ui/HaloConfigurationSection.tsx';
 import HelpModal from '@ui/modals/HelpModal';
 import ProminenceConfigurationSection from '@ui/ProminenceConfigurationSection.tsx';
@@ -35,6 +37,9 @@ type SidebarProps = {
   setStarFieldConfiguration: (updated: Partial<StarFieldState>) => void; // Add setter for StarField
   resetStarFieldToDefault: () => void; // Add reset function for StarField
   toggleStarFieldVisibility: () => void; // Add toggle visibility for StarField
+  earthConfiguration: EarthState; // Add Earth configuration
+  setEarthConfiguration: (updated: Partial<EarthState>) => void; // Add setter for Earth
+  resetEarthToDefault: () => void; // Add reset function for Earth
 };
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -54,6 +59,9 @@ const Sidebar: React.FC<SidebarProps> = ({
   setStarFieldConfiguration, // Add setter for StarField
   resetStarFieldToDefault, // Add reset function for StarField
   toggleStarFieldVisibility, // Add toggle visibility for StarField
+  earthConfiguration, // Add Earth configuration
+  setEarthConfiguration, // Add setter for Earth
+  resetEarthToDefault, // Add reset function for Earth
 }) => {
   const { t } = useTranslation();
   const { isHelpOpen, helpContent, openHelpModal, closeHelpModal } = useHelpModal();
@@ -74,6 +82,8 @@ const Sidebar: React.FC<SidebarProps> = ({
     setStarFieldConfiguration,
     t
   );
+
+  const earthItems = createEarthControlItems(earthConfiguration, setEarthConfiguration, t);
 
   return (
     <div
@@ -129,6 +139,14 @@ const Sidebar: React.FC<SidebarProps> = ({
           toggleStarFieldVisibility={toggleStarFieldVisibility} // Pass visibility toggle
           isStarFieldVisible={starFieldConfiguration.isVisible} // Pass visibility state
           t={t} // Pass translation function
+        />
+
+        {/* Earth Configuration */}
+        <EarthConfigurationSection
+          earthItems={earthItems}
+          resetEarthToDefault={resetEarthToDefault}
+          openHelpModal={openHelpModal}
+          t={t}
         />
       </div>
 
