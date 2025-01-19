@@ -1,5 +1,6 @@
 import React from 'react';
-import useTooltip from '@hooks/useTooltip';
+
+import useTooltip from '@hooks/useTooltip.ts';
 
 interface DistanceIndicatorProps {
   distance: number;

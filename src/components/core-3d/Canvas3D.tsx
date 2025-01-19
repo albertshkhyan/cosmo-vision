@@ -1,10 +1,12 @@
 import React, { Suspense } from 'react';
 
 import DistanceIndicator from '@components/ui/DistanceIndicator';
-import CameraHandler from '@core3d/CameraHandler.tsx';
-import { CameraFocus } from '@hooks/useCameraFocus';
 import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
+
+import { CameraFocus } from '@features/camera';
+
+import CameraHandler from '../../app/features/camera/components/CameraHandler.tsx';
 
 interface Canvas3DProps {
   children: React.ReactNode;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 interface CollapseProps {
@@ -15,13 +16,13 @@ const Collapse: React.FC<CollapseProps> = ({ title, children, defaultCollapsed =
   return (
     <div className="w-full">
       {/* Header with toggle */}
-      <div
+      <button
         className="text-xl font-bold text-white flex items-center justify-between cursor-pointer p-2 bg-gray-700 rounded-md hover:bg-gray-600"
         onClick={toggleCollapse}
       >
         <div>{title}</div>
         {isCollapsed ? <FaChevronDown /> : <FaChevronUp />}
-      </div>
+      </button>
 
       {/* Content */}
       <div

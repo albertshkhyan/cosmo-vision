@@ -1,9 +1,10 @@
 // vite.config.ts
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import glsl from 'vite-plugin-glsl';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+import glsl from 'vite-plugin-glsl';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,23 +19,45 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      // Common folders
-      '@assets': path.resolve(__dirname, 'src/assets'),
-      '@components': path.resolve(__dirname, 'src/components'),
-      '@constants': path.resolve(__dirname, 'src/constants'),
-      '@hooks': path.resolve(__dirname, 'src/hooks'),
-      '@scenes': path.resolve(__dirname, 'src/scenes'),
-      '@services': path.resolve(__dirname, 'src/services'),
-      '@shaders': path.resolve(__dirname, 'src/shaders'),
-      '@state': path.resolve(__dirname, 'src/state'),
-      '@types': path.resolve(__dirname, 'src/types'),
-      '@utils': path.resolve(__dirname, 'src/utils'),
+      // Root and common folders
+      '@app': path.resolve(__dirname, 'src/app'),
+      '@features': path.resolve(__dirname, 'src/app/features'),
+      '@shared': path.resolve(__dirname, 'src/app/features/shared'),
 
-      // Optionally alias subfolders in @components for easier importing:
+      // Feature-specific folders
+      '@camera': path.resolve(__dirname, 'src/app/features/camera'),
+      '@earth': path.resolve(__dirname, 'src/app/features/earth'),
+      '@halo': path.resolve(__dirname, 'src/app/features/halo'),
+      '@mars': path.resolve(__dirname, 'src/app/features/mars'),
+      '@prominence': path.resolve(__dirname, 'src/app/features/prominence'),
+      '@starfield': path.resolve(__dirname, 'src/app/features/starfield'),
+      '@sun': path.resolve(__dirname, 'src/app/features/sun'),
+
+      // Components
+      '@components': path.resolve(__dirname, 'src/components'),
       '@common': path.resolve(__dirname, 'src/components/common'),
       '@core3d': path.resolve(__dirname, 'src/components/core-3d'),
-      '@threeD': path.resolve(__dirname, 'src/components/threeD'),
       '@ui': path.resolve(__dirname, 'src/components/ui'),
+
+      // Utilities and hooks
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@utils': path.resolve(__dirname, 'src/shared/utils'),
+      '@mathUtils': path.resolve(__dirname, 'src/shared/utils/mathUtils'),
+      '@shaderUtils': path.resolve(__dirname, 'src/shared/utils/shaderUtils'),
+
+      // Assets, styles, and shaders
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@styles': path.resolve(__dirname, 'src/styles'),
+      '@shaders': path.resolve(__dirname, 'src/app/features/*/shaders'),
+
+      // State and types
+      '@state': path.resolve(__dirname, 'src/app/state'),
+      '@types': path.resolve(__dirname, 'src/types'),
+
+      // i18n
+      '@i18n': path.resolve(__dirname, 'src/i18n'),
+
+      '@textures': path.resolve(__dirname, 'public/assets/textures'),
     },
   },
 });

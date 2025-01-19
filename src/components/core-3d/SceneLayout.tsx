@@ -1,100 +1,27 @@
 import React, { useCallback, useState } from 'react';
 
-import useEarthConfiguration from '@hooks/useEarthConfiguration.ts';
-import useHaloConfiguration from '@hooks/useHaloConfiguration.ts';
-import useProminenceConfiguration from '@hooks/useProminenceConfiguration.ts';
-import useStarFieldConfiguration from '@hooks/useStarfieldConfiguration.ts';
-import useSunConfigurationState from '@hooks/useSunConfigurationState';
-import SolarSystemScene from '@scenes/SolarSystemScene';
-import { EarthState } from '@ui/configs/EarthControls.tsx';
-import { ProminenceState } from '@ui/configs/ProminenceControls.tsx';
-import { StarFieldState } from '@ui/configs/StarfieldControlPanel.tsx';
-import Sidebar from '@ui/Sidebar';
-
+import Sidebar from '@common/Sidebar.tsx';
+import { useConfigurationHandlers } from '@hooks/useConfigurationHandlers';
 import { FaBars } from 'react-icons/fa';
 
+import SolarSystemScene from '@app/routes/SolarSystemScene';
+
 const SceneLayout: React.FC = () => {
-  const { sunConfiguration, setSunConfiguration, resetToDefault } = useSunConfigurationState();
-  const { haloConfiguration, updateHaloConfiguration, resetHaloConfiguration } =
-    useHaloConfiguration();
-  const {
-    prominenceConfiguration,
-    toggleVisibility: toggleProminenceVisibility,
-    setProminenceConfiguration,
-    resetProminenceConfiguration,
-  } = useProminenceConfiguration();
-
-  const {
-    starFieldConfiguration,
-    toggleVisibility: toggleStarFieldVisibility,
-    setStarFieldConfiguration,
-    resetStarFieldConfiguration,
-  } = useStarFieldConfiguration(); // StarField hook integration
-
-  const { earthConfiguration, setEarthConfiguration, resetEarthConfiguration } =
-    useEarthConfiguration(); // Earth hook integration
-
+  const { configurations, handlers } = useConfigurationHandlers();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = useCallback(() => {
     setSidebarOpen((prev) => !prev);
   }, []);
 
-  const updateSunConfiguration = useCallback(
-    (updated: Partial<typeof sunConfiguration>) => {
-      setSunConfiguration((prev) => ({
-        ...prev,
-        ...updated,
-      }));
-    },
-    [setSunConfiguration]
-  );
-
-  const updateProminenceConfiguration = (updated: Partial<ProminenceState>) => {
-    setProminenceConfiguration((prev) => ({
-      ...prev,
-      ...updated,
-    }));
-  };
-
-  const updateStarFieldConfiguration = (updated: Partial<StarFieldState>) => {
-    setStarFieldConfiguration((prev) => ({
-      ...prev,
-      ...updated,
-    }));
-  };
-
-  const updateEarthConfiguration = (updated: Partial<EarthState>) => {
-    setEarthConfiguration((prev) => ({
-      ...prev,
-      ...updated,
-    }));
-  };
-
   return (
     <div className="relative flex h-screen">
       {/* Sidebar */}
       <Sidebar
+        configurations={configurations}
+        handlers={handlers}
         isOpen={isSidebarOpen}
         onClose={toggleSidebar}
-        sunConfiguration={sunConfiguration}
-        setSunConfiguration={updateSunConfiguration}
-        resetToDefault={resetToDefault}
-        resetSunToDefault={resetToDefault}
-        haloConfiguration={haloConfiguration}
-        setHaloConfiguration={updateHaloConfiguration}
-        resetHaloToDefault={resetHaloConfiguration}
-        prominenceConfiguration={prominenceConfiguration}
-        setProminenceConfiguration={updateProminenceConfiguration}
-        resetProminenceToDefault={resetProminenceConfiguration}
-        toggleProminenceVisibility={toggleProminenceVisibility}
-        starFieldConfiguration={starFieldConfiguration} // Pass StarField config
-        setStarFieldConfiguration={updateStarFieldConfiguration} // Pass StarField setter
-        resetStarFieldToDefault={resetStarFieldConfiguration} // Pass reset logic
-        toggleStarFieldVisibility={toggleStarFieldVisibility} // Pass visibility toggle
-        earthConfiguration={earthConfiguration} // Pass Earth config
-        setEarthConfiguration={updateEarthConfiguration} // Pass Earth setter
-        resetEarthToDefault={resetEarthConfiguration} // Pass Earth reset logic
       />
 
       {/* Main Content Area */}
@@ -109,11 +36,11 @@ const SceneLayout: React.FC = () => {
 
         {/* 3D Scene */}
         <SolarSystemScene
-          earthValues={earthConfiguration}
-          prominenceValues={prominenceConfiguration}
-          haloValues={haloConfiguration}
-          sunValues={sunConfiguration}
-          starFieldValues={starFieldConfiguration} // Pass StarField configuration
+          sunValues={configurations.sunConfiguration}
+          haloValues={configurations.haloConfiguration}
+          prominenceValues={configurations.prominenceConfiguration}
+          starFieldValues={configurations.starFieldConfiguration}
+          earthValues={configurations.earthConfiguration}
         />
       </div>
     </div>

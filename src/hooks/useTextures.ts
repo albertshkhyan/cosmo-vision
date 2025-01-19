@@ -2,7 +2,7 @@ import { useLoader } from '@react-three/fiber';
 import { TextureLoader, Texture } from 'three';
 
 /**
- * Custom hook to load multiple textures.
+ * Custom hooks to load multiple textures.
  * @param textureUrls - Array of texture URLs to load.
  * @returns Array of loaded textures.
  */

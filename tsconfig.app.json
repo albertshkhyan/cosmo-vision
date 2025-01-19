@@ -8,21 +8,36 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@assets/*": ["src/assets/*"],
-      "@components/*": ["src/components/*"],
-      "@constants/*": ["src/constants/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@scenes/*": ["src/scenes/*"],
-      "@services/*": ["src/services/*"],
-      "@shaders/*": ["src/shaders/*"],
-      "@state/*": ["src/state/*"],
-      "@types/*": ["src/types/*"],
-      "@utils/*": ["src/utils/*"],
+      "@app/*": ["src/app/*"],
+      "@features/*": ["src/app/features/*"],
+      "@camera/*": ["src/app/features/camera/*"],
+      "@earth/*": ["src/app/features/earth/*"],
+      "@halo/*": ["src/app/features/halo/*"],
+      "@mars/*": ["src/app/features/mars/*"],
+      "@prominence/*": ["src/app/features/prominence/*"],
+      "@shared/*": ["src/app/features/shared/*"],
+      "@starfield/*": ["src/app/features/starfield/*"],
+      "@sun/*": ["src/app/features/sun/*"],
 
+      "@components/*": ["src/components/*"],
       "@common/*": ["src/components/common/*"],
       "@core3d/*": ["src/components/core-3d/*"],
-      "@threeD/*": ["src/components/threeD/*"],
-      "@ui/*": ["src/components/ui/*"]
+      "@ui/*": ["src/components/ui/*"],
+
+      "@hooks/*": ["src/hooks/*"],
+      "@types/*": ["src/types/*"],
+      "@i18n/*": ["src/i18n/*"],
+
+      "@assets/*": ["src/assets/*"],
+      "@styles/*": ["src/styles/*"],
+      "@state/*": ["src/app/state/*"],
+
+      "@utils/*": ["src/shared/utils/*"],
+      "@mathUtils/*": ["src/app/features/shared/utils/mathUtils"],
+      "@shaderUtils/*": ["src/app/features/shared/utils/shaderUtils"],
+
+      "@shaders/*": ["src/app/features/*/shaders/*"],
+      "@textures/*": ["public/assets/textures/*"]
     },
 
     /* Bundler mode */

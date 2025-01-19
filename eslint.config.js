@@ -4,15 +4,17 @@ import importPlugin from 'eslint-plugin-import';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
+import tsParser from '@typescript-eslint/parser'; // Import the TypeScript parser
 import prettierPlugin from 'eslint-plugin-prettier';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import reactPlugin from 'eslint-plugin-react';
 
 export default [
   {
-    ignores: ['dist'],
+    ignores: ['dist', 'node_modules'],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
-      parser: tsParser,
+      parser: tsParser, // Use the imported TypeScript parser here
       ecmaVersion: 'latest',
       sourceType: 'module',
       globals: {
@@ -20,15 +22,17 @@ export default [
       },
     },
     plugins: {
-      import: importPlugin, // Register the import plugin
-      '@typescript-eslint': tsPlugin, // TypeScript plugin
-      'react-hooks': reactHooks, // React hooks
-      'react-refresh': reactRefresh, // React Refresh
+      import: importPlugin,
+      '@typescript-eslint': tsPlugin,
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+      'jsx-a11y': jsxA11y,
+      react: reactPlugin,
     },
     settings: {
       'import/resolver': {
         typescript: {
-          project: './tsconfig.json', // Ensure this matches your project setup
+          project: './tsconfig.json', // Ensure TypeScript project is resolved
         },
       },
     },
@@ -36,50 +40,67 @@ export default [
       ...js.configs.recommended.rules,
       ...tsPlugin.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
+      ...jsxA11y.configs.recommended.rules,
+      ...reactPlugin.configs.recommended.rules,
 
-      // ESLint plugin import rules
+      // Import order and grouping
       'import/order': [
         'warn',
         {
           groups: [
-            'builtin', // Node.js and built-in modules
-            'external', // npm modules
-            'internal', // Absolute imports within the project
-            ['parent', 'sibling', 'index'], // Relative imports
+            'builtin', // Built-in Node.js modules (e.g., fs, path)
+            'external', // External modules (e.g., react, lodash)
+            'internal', // Internal modules (aliases, e.g., @app/**)
+            ['parent', 'sibling', 'index'], // Parent, sibling, and index files
           ],
-          'newlines-between': 'always', // Enforce newlines between groups
-          alphabetize: {
-            order: 'asc', // Alphabetical order
-            caseInsensitive: true, // Ignore case while sorting
-          },
           pathGroups: [
             {
-              pattern: 'react', // Ensure React is always first
-              group: 'builtin',
-              position: 'before',
-            },
-            {
-              pattern: 'react-*', // Group React-related libraries
+              pattern: 'react', // React first
               group: 'external',
               position: 'before',
             },
             {
-              pattern: '{react-icons/**,react-i18next}', // Separate specific libraries like react-icons and react-i18next
-              group: 'external',
+              pattern: '@app/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@features/**',
+              group: 'internal',
+              position: 'after',
+            },
+            {
+              pattern: '@shared/**',
+              group: 'internal',
+              position: 'after',
+            },
+            {
+              pattern: '@utils/**',
+              group: 'internal',
               position: 'after',
             },
           ],
-          pathGroupsExcludedImportTypes: ['react'], // Prevent React from being sorted with other imports
+          pathGroupsExcludedImportTypes: ['react'],
+          'newlines-between': 'always',
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
         },
       ],
 
-      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      'react/no-unknown-property': 'off',
+      'react/prop-types': 'off', // Disable prop-types enforcement
+
+      // Example React-specific rule
+      'react/jsx-boolean-value': ['error', 'never'],
+      'react/react-in-jsx-scope': 'off',
     },
   },
   {
     files: ['**/*.{ts,tsx,js,jsx}'],
     plugins: {
-      prettier: prettierPlugin, // Bring in Prettier plugin
+      prettier: prettierPlugin,
     },
     rules: {
       'prettier/prettier': 'warn',

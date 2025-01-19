@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { FaRedo } from 'react-icons/fa';
 
 const ResetButton: React.FC<{ onClick: () => void; label: string }> = ({ onClick, label }) => (
