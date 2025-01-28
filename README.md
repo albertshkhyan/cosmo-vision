@@ -4,13 +4,24 @@ A 3D Solar System simulation with dynamic control over the Sun, Halo, and Camera
 
 ---
 
-## Preview
 
-### Solar System Overview
+## Project Progress
+
+Here, we showcase the periodic progress of the project in stages, including GIFs, screenshots, or notes.
+
+### Stage 1: Sun
 ![Solar System Overview](src/assets/gif/site-overview-step-1.gif)
 
-### Starfield Effect
+### Stage 2: Starfield Effect
 ![Starfield Effect](src/assets/gif/starfield.gif)
+
+### 🌍 Stage 3: Earth
+
+#### Version 1: Basic Earth Rendering
+![Starfield Effect](src/assets/gif/earth-v1.gif)
+
+#### Version 2: Improved day-night transition for smoother blending.
+![Starfield Effect](src/assets/gif/earth-v2.gif)
 
 
 ---
