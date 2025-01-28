@@ -7,10 +7,10 @@ A 3D Solar System simulation with dynamic control over the Sun, Halo, and Camera
 ## Preview
 
 ### Solar System Overview
-![Solar System Overview](./public/assets/gif/site-overview-step-1.gif)
+![Solar System Overview](src/assets/gif/site-overview-step-1.gif)
 
 ### Starfield Effect
-![Starfield Effect](./public/assets/gif/starfield.gif)
+![Starfield Effect](src/assets/gif/starfield.gif)
 
 
 ---

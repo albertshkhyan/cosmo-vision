@@ -37,7 +37,7 @@
       "@shaderUtils/*": ["src/app/features/shared/utils/shaderUtils"],
 
       "@shaders/*": ["src/app/features/*/shaders/*"],
-      "@textures/*": ["public/assets/textures/*"]
+      "@textures/*": ["src/assets/textures/*"]
     },
 
     /* Bundler mode */

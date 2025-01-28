@@ -57,7 +57,7 @@ export default defineConfig({
       // i18n
       '@i18n': path.resolve(__dirname, 'src/i18n'),
 
-      '@textures': path.resolve(__dirname, 'public/assets/textures'),
+      '@textures': path.resolve(__dirname, 'src/assets/textures'),
     },
   },
 });
