@@ -1,7 +1,7 @@
 # Solar System 3D Visualization
 
 
-![solar system link:](https://spiffy-faun-47cf30.netlify.app)
+https://spiffy-faun-47cf30.netlify.app
 
 
 A 3D Solar System simulation with dynamic control over the Sun, Halo, and Camera using **React Three Fiber** and **Three.js**. The project includes dynamic controls for visual effects, responsive UI elements, and a reusable canvas component for rendering 3D elements.
